@@ -1,0 +1,79 @@
+{
+  "name": "formash",
+  "version": "2.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "description": "Formash is a simple React form library that uses hooks and schema to manage form state, errors, validation and so much more. Now you don't need to write a lot of code to manage your forms.",
+  "repository": "git@github.com:safdar-azeem/formash.git",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "react",
+    "formash",
+    "form",
+    "hooks",
+    "react-formash",
+    "formash-hook",
+    "form-hook",
+    "form-schema",
+    "form-validation",
+    "input-hook",
+    "react-hook",
+    "react-form-hook"
+  ],
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "author": "safdar-azeem",
+  "module": "dist/formash.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/formash.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/formash.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "husky": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "size-limit": "^8.1.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.4"
+  }
+}
