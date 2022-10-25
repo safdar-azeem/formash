@@ -3,7 +3,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "repository": "https://github.com/safdar-azeem/react-ifarm",
+  "repository": "https://github.com/safdar-azeem/ifarm",
   "keywords": [
     "react",
     "form",
