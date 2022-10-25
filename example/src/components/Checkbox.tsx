@@ -1,4 +1,4 @@
-import { IFormSchema, IFormState, IFormOption } from 'ifarm';
+import { IFormSchema, IFormState, IFormOption } from 'formash';
 
 interface IProps {
   formElement: IFormSchema;

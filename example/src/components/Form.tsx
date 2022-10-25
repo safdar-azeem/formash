@@ -1,5 +1,5 @@
 import formSchema from '../data/formSchema';
-import { useForm, IFormSchema } from 'ifarm';
+import { useForm, IFormSchema } from 'formash';
 import Checkbox from './Checkbox';
 import InputFile from './InputFile';
 import Radio from './Radio';

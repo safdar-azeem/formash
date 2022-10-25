@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { IFormSchema, IFormState, useReadFile } from 'ifarm';
+import { IFormSchema, IFormState, useReadFile } from 'formash';
 
 interface IProps {
   formElement: IFormSchema;

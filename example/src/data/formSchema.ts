@@ -1,4 +1,4 @@
-import { IFormSchema } from 'ifarm';
+import { IFormSchema } from 'formash';
 
 const formSchema: IFormSchema[] = [
   {
