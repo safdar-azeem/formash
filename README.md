@@ -1,4 +1,4 @@
-# ifarm
+# formash
 
 A simple react use-form hook to handle form state and validation. now you don't need to write a lot of code to handle form state and validation other stuff. you can use it with any react ui library. it's very simple and easy to use.
 
@@ -7,13 +7,13 @@ A simple react use-form hook to handle form state and validation. now you don't 
 ### npm
 
 ```bash
-npm i ifarm
+npm i formash
 ```
 
 ### yarn
 
 ```bash
-yarn add ifarm
+yarn add formash
 ```
 
 ## Variables and Functions
@@ -30,7 +30,7 @@ yarn add ifarm
 ## Basic Usage
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [
   {
@@ -75,7 +75,7 @@ const Form = () => {
 ### How to use with textarea
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [
   {
@@ -118,7 +118,7 @@ const TextArea = () => {
 ### How to use with input select type
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [
   {
@@ -176,7 +176,7 @@ const Select = () => {
 ### How to use with input checkbox type
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [
   {
@@ -241,7 +241,7 @@ Note: to checked the checkbox, you need to check the option value in formState[i
 ### How to use with input radio type
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [
   {
@@ -304,7 +304,7 @@ Note: to checked the radio, you need to compare the option value with formState[
 ## How to use with input file type
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [
   {
@@ -350,7 +350,7 @@ Note: with file input type, you don't need to set the value attribute, it will b
 ## How to validate the form
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [];
 
@@ -406,7 +406,7 @@ with typescript you can use different interfaces and types with input, schema, o
 - `IFormState` type that you can use with form state that you get from the hook
 
 ```typescript
-import { useForm, IFormSchema, IFormOption } from 'ifarm';
+import { useForm, IFormSchema, IFormOption } from 'formash';
 
 const formSchema: IFormSchema[] = [];
 
@@ -433,7 +433,7 @@ const Form = () => {
 - You are done.
 
 ```javascript
-import { useForm } from 'ifarm';
+import { useForm } from 'formash';
 
 const formSchema = [];
 
