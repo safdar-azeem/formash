@@ -1,15 +1,20 @@
 {
-  "version": "0.1.0",
+  "name": "formash",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "repository": "https://github.com/safdar-azeem/ifarm",
+  "description": "A simple and easy to handle react form state and validation library",
+  "repository": "git@github.com:safdar-azeem/formash.git",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "react",
     "form",
     "i-farm",
-    "react-ifarm",
-    "ifarm-hook",
+    "react-formash",
+    "formash-hook",
     "form-hook",
     "input-hook"
   ],
@@ -43,16 +48,15 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "ifarm",
   "author": "safdar-azeem",
-  "module": "dist/ifarm.esm.js",
+  "module": "dist/formash.esm.js",
   "size-limit": [
     {
-      "path": "dist/ifarm.cjs.production.min.js",
+      "path": "dist/formash.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/ifarm.esm.js",
+      "path": "dist/formash.esm.js",
       "limit": "10 KB"
     }
   ],
