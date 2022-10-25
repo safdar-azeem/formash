@@ -5,6 +5,7 @@ import InputFile from './InputFile';
 import Radio from './Radio';
 import Select from './Select';
 import TextArea from './TextArea';
+import InputError from './inputError';
 
 const Form = () => {
   const { formState, handleChange, doValidate } = useForm(formSchema);
@@ -81,11 +82,13 @@ const Form = () => {
               onChange={handleChange}
               placeholder={item.placeholder}
             />
-            <div>{formState[item.name].error}</div>
+            <InputError error={formState[item.name].error} />
           </div>
         );
       })}
-      <button type="submit">Submit</button>
+      <button type="submit" className="btn btn-primary btn-lg ">
+        Submit
+      </button>
     </form>
   );
 };

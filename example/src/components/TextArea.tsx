@@ -1,4 +1,5 @@
 import { IFormSchema, IFormState } from 'formash';
+import InputError from './inputError';
 
 interface IProps {
   formElement: IFormSchema;
@@ -20,6 +21,7 @@ const TextArea = ({ formElement, formState, handleChange }: IProps) => {
         name={formElement.name}
         id={formElement.name}
       ></textarea>
+      <InputError error={formState[formElement.name].error} />
     </div>
   );
 };

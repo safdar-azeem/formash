@@ -1,4 +1,5 @@
 import { IFormSchema, IFormState, IFormOption } from 'formash';
+import InputError from './inputError';
 
 interface IProps {
   formElement: IFormSchema;
@@ -29,7 +30,7 @@ const Checkbox = ({ formElement, formState, handleChange }: IProps) => {
           </div>
         );
       })}
-      <div>{formState[formElement.name].error}</div>
+      <InputError error={formState[formElement.name].error} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { IFormSchema, IFormState, IFormOption } from 'formash';
+import InputError from './inputError';
 
 interface IProps {
   formElement: IFormSchema;
@@ -8,7 +9,7 @@ interface IProps {
 
 const Radio = ({ formElement, formState, handleChange }: IProps) => {
   return (
-    <div>
+    <div className="my-3">
       {formElement.options?.map((option: IFormOption) => {
         return (
           <div className="form-check" key={option.name}>
@@ -27,7 +28,7 @@ const Radio = ({ formElement, formState, handleChange }: IProps) => {
           </div>
         );
       })}
-      <div>{formState[formElement.name].error}</div>
+      <InputError error={formState[formElement.name].error} />
     </div>
   );
 };

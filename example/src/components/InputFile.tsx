@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { IFormSchema, IFormState, useReadFile } from 'formash';
+import InputError from './inputError';
 
 interface IProps {
   formElement: IFormSchema;
@@ -15,7 +16,7 @@ const InputFile = ({ formElement, formState, handleChange }: IProps) => {
   }, [formState[formElement.name].value]);
 
   return (
-    <div className="mb-3">
+    <div className="my-3">
       <label htmlFor="exampleFormControlInput1" className="form-label">
         {formElement.label}
       </label>
@@ -31,7 +32,7 @@ const InputFile = ({ formElement, formState, handleChange }: IProps) => {
       {file && (
         <img src={file} style={{ width: '100px' }} className="mt-3" alt="" />
       )}
-      <div>{formState[formElement.name].error}</div>
+      <InputError error={formState[formElement.name].error} />
     </div>
   );
 };
