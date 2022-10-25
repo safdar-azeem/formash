@@ -96,10 +96,9 @@ const TextArea = () => {
     <div>
       {formSchema.map(item => {
         return (
-          <div className="mb-3">
+          <div>
             <label htmlFor={item.name}> {item.label} </label>
             <textarea
-              className="form-control"
               placeholder={item.placeholder}
               onChange={handleChange}
               value={formState[item.name].value}
