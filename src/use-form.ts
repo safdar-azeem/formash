@@ -1,52 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import { IFormSchema, IFormValues, IFormErrors } from './types'
+import React, { useMemo, useState } from 'react'
 import { errors } from './utils/errors'
+import { IFormErrors, IFormSchema, IFormValues } from './types'
 
 export const useForm = (
-  formSchemaProps?: IFormSchema[]
+  formSchema: IFormSchema[]
 ): {
   formValues: IFormValues
   formErrors: IFormErrors
-  handleChange: (event: React.ChangeEvent<any>) => void
-  setFormError: (name: string, error: string) => void
-  handleReset: () => void
-  setFormValue: (name: string, value: any) => void
   doValidate: () => boolean
-  setFormSchema: (formSchema: IFormSchema[]) => void
-  isFormSchemaSet: boolean
+  handleChange: (event: React.ChangeEvent<any>) => void
+  handleReset: () => void
+  setFormError: (name: string, error: string) => void
+  setFormValue: (name: string, value: any) => void
+  setFormData: (data: IFormValues) => void
 } => {
-  const getInitialValues = (formSchema: IFormSchema[]) => {
-    let formValues: IFormValues = {}
+  const initialValues = useMemo((): IFormValues => {
+    let initialValues: IFormValues = {}
     formSchema.forEach((formItem: IFormSchema) => {
-      formValues[formItem.name] = formItem?.value || ''
+      initialValues[formItem.name] = formItem?.value || ''
     })
-    return formValues
-  }
-
-  const getInitialErrors = (formSchema: IFormSchema[]) => {
-    let formErrors: IFormErrors = {}
-    formSchema.forEach((formItem: IFormSchema) => {
-      formErrors[formItem.name] = ''
-    })
-    return formErrors
-  }
-
-  const [isFormSchemaSet, setIsFormSchema] = useState(false)
-  const [formSchema, setFormSchema] = useState<IFormSchema[]>(formSchemaProps || [])
-  const [formValues, setFormValues] = useState<IFormValues>(getInitialValues(formSchema))
-  const [formErrors, setFormErrors] = useState<IFormValues>(getInitialErrors(formSchema))
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-
-  useEffect(() => {
-    if (formSchema.length > 0) {
-      setFormValues(getInitialValues(formSchema))
-      setFormErrors(getInitialErrors(formSchema))
-      setTimeout(() => setIsFormSchema(true), 0.2)
-    }
+    return initialValues
   }, [formSchema])
+
+  const initialErrors = useMemo((): IFormErrors => {
+    let initialErrors: IFormErrors = {}
+    formSchema.forEach((formItem: IFormSchema) => {
+      initialErrors[formItem.name] = ''
+    })
+    return initialErrors
+  }, [formSchema])
+
+  const [formValues, setFormValues] = useState<IFormValues>(initialValues)
+  const [formErrors, setFormErrors] = useState<IFormValues>(initialErrors)
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
   const handleChange = (event: React.ChangeEvent<any>): void => {
     const { name, value, type } = event.target
+    if (isEmptyValue(value)) return
     if (type === 'file') return handleFileChange(event)
     if (type === 'checkbox') return handleChangeCheckbox(event)
     setFormValue(name, value)
@@ -73,9 +63,9 @@ export const useForm = (
     const formItem = formSchema.find((item: IFormSchema) => item.name === name)
     if (!formItem) return console.error(errors.fieldNotFound(name))
 
+    formValues[name] = value
     setFormValues({
       ...formValues,
-      [name]: value,
     })
 
     if (isSubmitting) {
@@ -87,9 +77,9 @@ export const useForm = (
   }
 
   const setFormError = (name: string, error: string): void => {
+    formErrors[name] = error
     setFormErrors({
       ...formErrors,
-      [name]: error,
     })
   }
 
@@ -148,19 +138,24 @@ export const useForm = (
   }
 
   const handleReset = (): void => {
-    setFormValues(getInitialValues(formSchema))
-    setFormErrors(getInitialValues(formSchema))
+    setFormValues(initialValues)
+    setFormErrors(initialErrors)
+  }
+
+  const setFormData = (data: IFormValues): void => {
+    Object.keys(data).forEach((key: string) => {
+      setFormValue(key, data[key])
+    })
   }
 
   return {
     formValues,
     formErrors,
-    isFormSchemaSet,
     doValidate,
     handleChange,
     handleReset,
     setFormError,
     setFormValue,
-    setFormSchema,
+    setFormData,
   }
 }
