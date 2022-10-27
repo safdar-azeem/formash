@@ -17,10 +17,12 @@ const Select = ({ formElement, formValues, formErrors, handleChange }: IProps) =
         onChange={handleChange}
         value={formValues[formElement.name]}
       >
-        <option selected>{formElement.label}</option>
+        <option value="" selected>
+          {formElement.label}
+        </option>
         {formElement.options?.map((option: IFormOption) => {
           return (
-            <option key={option.name} value={option.value}>
+            <option key={option.id} value={option.value}>
               {option.label}
             </option>
           )

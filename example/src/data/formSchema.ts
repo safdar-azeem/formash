@@ -34,14 +34,14 @@ const formSchema: IFormSchema[] = [
     required: true,
     options: [
       {
+        id: 'male',
         label: 'Male',
         value: 'male',
-        name: 'male',
       },
       {
+        id: 'female',
         label: 'Female',
         value: 'female',
-        name: 'female',
       },
     ],
   },
@@ -56,14 +56,14 @@ const formSchema: IFormSchema[] = [
     required: true,
     options: [
       {
+        id: 'football',
         label: 'Football',
         value: 'football',
-        name: 'football',
       },
       {
+        id: 'cricket',
         label: 'Cricket',
         value: 'cricket',
-        name: 'cricket',
       },
     ],
   },
@@ -78,10 +78,12 @@ const formSchema: IFormSchema[] = [
     required: true,
     options: [
       {
+        id: 'pizza',
         label: 'Pizza',
         value: 'pizza',
       },
       {
+        id: 'burger',
         label: 'Burger',
         value: 'burger',
       },
@@ -95,6 +97,8 @@ const formSchema: IFormSchema[] = [
     error: 'Please enter your avatar',
     value: '',
     required: true,
+    accept: 'image/*',
+    multiple: true,
   },
   {
     type: 'email',
