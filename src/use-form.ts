@@ -144,7 +144,6 @@ export const useForm = (
     })
     setFormErrors(newFormErrors)
     setFormValues(newFormValues)
-    console.log('isValid', isValid)
     setIsSubmitting(!isValid)
     return isValid
   }
