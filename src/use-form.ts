@@ -34,7 +34,6 @@ export const useForm = (
   const [isFormSchemaSet, setIsFormSchema] = useState(false)
   const [formSchema, setFormSchema] = useState<IFormSchema[]>(formSchemaProps || [])
   const [formValues, setFormValues] = useState<IFormValues>(getInitialValues(formSchema))
-
   const [formErrors, setFormErrors] = useState<IFormValues>(getInitialErrors(formSchema))
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
