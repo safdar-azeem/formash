@@ -6,15 +6,27 @@ import InputFile from './InputFile'
 import Radio from './Radio'
 import Select from './Select'
 import TextArea from './TextArea'
+import { getData } from '../data/data'
+import { useEffect } from 'react'
 
 const Form = () => {
-  const { formValues, formErrors, handleChange, doValidate } = useForm(formSchema)
+  const { formValues, formErrors, handleChange, doValidate, setFormValue } = useForm(formSchema)
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
     const hasError = doValidate()
     console.log('hasError', hasError)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data: any = await getData()
+      Object.keys(data).forEach((key: string) => {
+        setFormValue(key, data[key])
+      })
+    }
+    // fetchData()
+  }, [])
 
   return (
     <form onSubmit={handleSubmit}>
