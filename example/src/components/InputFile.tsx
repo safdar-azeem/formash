@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import { IFormSchema, IFormState, useReadFile } from 'formash';
-import InputError from './inputError';
+import { useEffect } from 'react'
+import { IFormSchema, IFormErrors, IFormValues, useReadFile } from 'formash'
+import InputError from './InputError'
 
 interface IProps {
-  formElement: IFormSchema;
-  formState: IFormState;
-  handleChange: (event: any) => void;
+  formElement: IFormSchema
+  formValues: IFormValues
+  formErrors: IFormErrors
+  handleChange: (event: any) => void
 }
-
-const InputFile = ({ formElement, formState, handleChange }: IProps) => {
-  const { file, setFile } = useReadFile();
+const InputFile = ({ formElement, formValues, formErrors, handleChange }: IProps) => {
+  const { file, setFile } = useReadFile()
 
   useEffect(() => {
-    setFile(formState[formElement.name].value);
-  }, [formState[formElement.name].value]);
+    setFile(formValues[formElement.name])
+  }, [formValues[formElement.name]])
 
   return (
     <div className="my-3">
@@ -29,12 +29,10 @@ const InputFile = ({ formElement, formState, handleChange }: IProps) => {
         onChange={handleChange}
         placeholder={formElement.placeholder}
       />
-      {file && (
-        <img src={file} style={{ width: '100px' }} className="mt-3" alt="" />
-      )}
-      <InputError error={formState[formElement.name].error} />
+      {file && <img src={file} style={{ width: '100px' }} className="mt-3" alt="" />}
+      <InputError error={formErrors[formElement.name]} />
     </div>
-  );
-};
+  )
+}
 
-export default InputFile;
+export default InputFile

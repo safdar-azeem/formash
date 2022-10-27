@@ -1,20 +1,21 @@
-import { IFormSchema, IFormState, IFormOption } from 'formash';
-import InputError from './inputError';
+import { IFormErrors, IFormOption, IFormSchema, IFormValues } from 'formash'
+import InputError from './InputError'
 
 interface IProps {
-  formElement: IFormSchema;
-  formState: IFormState;
-  handleChange: (event: any) => void;
+  formElement: IFormSchema
+  formValues: IFormValues
+  formErrors: IFormErrors
+  handleChange: (event: any) => void
 }
 
-const Select = ({ formElement, formState, handleChange }: IProps) => {
+const Select = ({ formElement, formValues, formErrors, handleChange }: IProps) => {
   return (
     <>
       <select
         className="form-select my-3"
         name={formElement.name}
         onChange={handleChange}
-        value={formState[formElement.name].value}
+        value={formValues[formElement.name]}
       >
         <option selected>{formElement.label}</option>
         {formElement.options?.map((option: IFormOption) => {
@@ -22,12 +23,12 @@ const Select = ({ formElement, formState, handleChange }: IProps) => {
             <option key={option.name} value={option.value}>
               {option.label}
             </option>
-          );
+          )
         })}
       </select>
-      <InputError error={formState[formElement.name].error} />
+      <InputError error={formErrors[formElement.name]} />
     </>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

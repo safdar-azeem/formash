@@ -1,13 +1,14 @@
-import { IFormSchema, IFormState } from 'formash';
-import InputError from './inputError';
+import { IFormErrors, IFormSchema, IFormValues } from 'formash'
+import InputError from './InputError'
 
 interface IProps {
-  formElement: IFormSchema;
-  formState: IFormState;
-  handleChange: (event: any) => void;
+  formElement: IFormSchema
+  formValues: IFormValues
+  formErrors: IFormErrors
+  handleChange: (event: any) => void
 }
 
-const TextArea = ({ formElement, formState, handleChange }: IProps) => {
+const TextArea = ({ formElement, formValues, formErrors, handleChange }: IProps) => {
   return (
     <div className="mb-3">
       <label htmlFor="exampleFormControlTextarea1" className="form-label">
@@ -17,13 +18,13 @@ const TextArea = ({ formElement, formState, handleChange }: IProps) => {
         className="form-control"
         placeholder={formElement.placeholder}
         onChange={handleChange}
-        value={formState[formElement.name].value}
+        value={formValues[formElement.name]}
         name={formElement.name}
         id={formElement.name}
       ></textarea>
-      <InputError error={formState[formElement.name].error} />
+      <InputError error={formErrors[formElement.name]} />
     </div>
-  );
-};
+  )
+}
 
-export default TextArea;
+export default TextArea

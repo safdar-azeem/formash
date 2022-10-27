@@ -1,19 +1,20 @@
-import formSchema from '../data/formSchema';
-import { useForm, IFormSchema } from 'formash';
-import Checkbox from './Checkbox';
-import InputFile from './InputFile';
-import Radio from './Radio';
-import Select from './Select';
-import TextArea from './TextArea';
-import InputError from './inputError';
+import formSchema from '../data/formSchema'
+import { IFormSchema, useForm } from 'formash'
+import Checkbox from './Checkbox'
+import InputError from './InputError'
+import InputFile from './InputFile'
+import Radio from './Radio'
+import Select from './Select'
+import TextArea from './TextArea'
 
 const Form = () => {
-  const { formState, handleChange, doValidate } = useForm(formSchema);
+  const { formValues, formErrors, handleChange, doValidate } = useForm(formSchema)
 
   const handleSubmit = (event: any) => {
-    event.preventDefault();
-    const hasError = doValidate();
-  };
+    event.preventDefault()
+    const hasError = doValidate()
+    console.log('hasError', hasError)
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -22,75 +23,78 @@ const Form = () => {
           return (
             <Select
               formElement={item}
-              formState={formState}
+              formValues={formValues}
+              formErrors={formErrors}
               handleChange={handleChange}
               key={item.name}
             />
-          );
+          )
 
         if (item.type === 'textarea')
           return (
             <TextArea
               formElement={item}
-              formState={formState}
+              formValues={formValues}
+              formErrors={formErrors}
               handleChange={handleChange}
               key={item.name}
             />
-          );
+          )
 
         if (item.type === 'checkbox')
           return (
             <Checkbox
               formElement={item}
-              formState={formState}
+              formValues={formValues}
+              formErrors={formErrors}
               handleChange={handleChange}
               key={item.name}
             />
-          );
+          )
 
         if (item.type === 'radio')
           return (
             <Radio
               formElement={item}
-              formState={formState}
+              formValues={formValues}
+              formErrors={formErrors}
               handleChange={handleChange}
               key={item.name}
             />
-          );
+          )
 
         if (item.type === 'file')
           return (
             <InputFile
               formElement={item}
-              formState={formState}
+              formValues={formValues}
+              formErrors={formErrors}
               handleChange={handleChange}
               key={item.name}
             />
-          );
+          )
 
         return (
           <div className="mb-3" key={item.name}>
-            <label htmlFor={item.name} className="form-label">
-              {item.label}
-            </label>
+            <label htmlFor={item.name}>{item.label}</label>
             <input
               type={item.type}
               className="form-control"
               id={item.name}
               name={item.name}
-              value={formState[item.name].value}
+              value={formValues[item.name]}
               onChange={handleChange}
               placeholder={item.placeholder}
             />
-            <InputError error={formState[item.name].error} />
+            <InputError error={formErrors[item.name]} />
           </div>
-        );
+        )
       })}
       <button type="submit" className="btn btn-primary btn-lg ">
         Submit
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

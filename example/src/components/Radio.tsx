@@ -1,13 +1,14 @@
-import { IFormSchema, IFormState, IFormOption } from 'formash';
-import InputError from './inputError';
+import { IFormErrors, IFormOption, IFormSchema, IFormValues } from 'formash'
+import InputError from './InputError'
 
 interface IProps {
-  formElement: IFormSchema;
-  formState: IFormState;
-  handleChange: (event: any) => void;
+  formElement: IFormSchema
+  formValues: IFormValues
+  formErrors: IFormErrors
+  handleChange: (event: any) => void
 }
 
-const Radio = ({ formElement, formState, handleChange }: IProps) => {
+const Radio = ({ formElement, formValues, formErrors, handleChange }: IProps) => {
   return (
     <div className="my-3">
       {formElement.options?.map((option: IFormOption) => {
@@ -18,7 +19,7 @@ const Radio = ({ formElement, formState, handleChange }: IProps) => {
               type={formElement.type}
               value={option.value}
               id={option.name}
-              checked={formState[formElement.name]?.value === option.value}
+              checked={formValues[formElement.name] === option.value}
               onChange={handleChange}
               name={formElement.name}
             />
@@ -26,11 +27,11 @@ const Radio = ({ formElement, formState, handleChange }: IProps) => {
               {option.label}
             </label>
           </div>
-        );
+        )
       })}
-      <InputError error={formState[formElement.name].error} />
+      <InputError error={formErrors[formElement.name]} />
     </div>
-  );
-};
+  )
+}
 
-export default Radio;
+export default Radio

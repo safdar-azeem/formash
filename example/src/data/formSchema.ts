@@ -1,4 +1,4 @@
-import { IFormSchema } from 'formash';
+import { IFormSchema } from 'formash'
 
 const formSchema: IFormSchema[] = [
   {
@@ -9,6 +9,10 @@ const formSchema: IFormSchema[] = [
     error: 'Please enter your name',
     value: '',
     required: true,
+    minLength: 3,
+    maxLength: 5,
+    enum: ['John', 'Jane'],
+    trim: true,
   },
   {
     type: 'textarea',
@@ -18,6 +22,7 @@ const formSchema: IFormSchema[] = [
     error: 'Please enter your bio',
     value: '',
     required: true,
+    trim: true,
   },
   {
     name: 'gender',
@@ -90,7 +95,6 @@ const formSchema: IFormSchema[] = [
     error: 'Please enter your avatar',
     value: '',
     required: true,
-    accept: 'image/*',
   },
   {
     type: 'email',
@@ -110,6 +114,15 @@ const formSchema: IFormSchema[] = [
     error: 'Please enter a valid password',
     required: true,
   },
-];
+  {
+    type: 'date',
+    name: 'date',
+    label: 'Date',
+    value: new Date(),
+    placeholder: 'Please enter your date',
+    error: 'Please enter a valid date',
+    required: true,
+  },
+]
 
-export default formSchema;
+export default formSchema
