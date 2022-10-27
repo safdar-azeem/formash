@@ -36,7 +36,6 @@ export const useForm = (
 
   const handleChange = (event: React.ChangeEvent<any>): void => {
     const { name, value, type } = event.target
-    if (isEmptyValue(value)) return
     if (type === 'file') return handleFileChange(event)
     if (type === 'checkbox') return handleChangeCheckbox(event)
     setFormValue(name, value)
