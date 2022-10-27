@@ -41,6 +41,7 @@ yarn add formash
         [{
         <li> name: string </li>
         <li> value: string </li>
+        <li> id?: string </li>
         <li> label?: string </li>
         <li> text?: string </li>
         <li> icon?: string </li>
@@ -80,6 +81,7 @@ yarn add formash
   - `handleReset` it's a function that takes no arguments and resets the form values and errors.
   - `setFormValue` if you want to set the form value from the outside you can use the `setFormValue` function that you get from the hook. it takes two arguments. the first argument is the name of the input field and the second argument is the value that you want to set.
   - `setFormError` if you want to set the form error from the outside you can use the `setFormError` function that you get from the hook. it takes two arguments. the first argument is the name of the input field and the second argument is the error message that you want to set.
+  - `setFormData` let's say you have a form for updating a user information. and you want show the previous information in the form. and data is coming from the server. you can use the `setFormData` function to set the form values. it takes an object as an argument. the key is the name of the input field and the value is the value that you want to set.
 
 ## Basic Usage
 
@@ -181,6 +183,8 @@ const Select = () => {
 
 # How to use with input checkbox type
 
+Note: to checked the checkbox, you need to check the option value in formValues[item.name] array
+
 ```javascript
 import { useForm } from 'formash'
 
@@ -195,14 +199,14 @@ const formSchema = [
     required: false,
     options: [
       {
+        id: 'football',
         label: 'Football',
         value: 'football',
-        name: 'football',
       },
       {
+        id: 'cricket',
         label: 'Cricket',
         value: 'cricket',
-        name: 'cricket',
       },
     ],
   },
@@ -222,12 +226,12 @@ const CheckBox = () => {
                   <input
                     type={item.type}
                     value={option.value}
-                    id={option.name}
+                    id={option.id}
                     checked={formValues[item.name].includes(option.value)}
                     onChange={handleChange}
                     name={item.name}
                   />
-                  <label htmlFor={option.name}>{option.label}</label>
+                  <label htmlFor={option.id}>{option.label}</label>
                 </div>
               )
             })}
@@ -240,9 +244,9 @@ const CheckBox = () => {
 }
 ```
 
-Note: to checked the checkbox, you need to check the option value in formValues[item.name] array
-
 # How to use with input radio type
+
+Note: to checked the radio, you need to compare the option value with formValues[item.name] if they are equal then it will be checked
 
 ```javascript
 import { useForm } from 'formash'
@@ -258,14 +262,14 @@ const formSchema = [
     required: false,
     options: [
       {
+        id: 'male',
         label: 'Male',
         value: 'male',
-        name: 'male',
       },
       {
+        id: 'female',
         label: 'Female',
         value: 'female',
-        name: 'female',
       },
     ],
   },
@@ -285,12 +289,12 @@ const Radio = () => {
                   <input
                     type={item.type}
                     value={option.value}
-                    id={option.name}
+                    id={option.id}
                     checked={formValues[item.name] === option.value}
                     onChange={handleChange}
                     name={item.name}
                   />
-                  <label htmlFor={option.name}>{option.label}</label>
+                  <label htmlFor={option.id}>{option.label}</label>
                 </div>
               )
             })}
@@ -303,9 +307,9 @@ const Radio = () => {
 }
 ```
 
-Note: to checked the radio, you need to compare the option value with formValues[item.name] if they are equal then it will be checked
-
 # How to use with input file type
+
+Note: with file input type, you don't need to set the value attribute. It will be set automatically when you select the file.
 
 ```javascript
 import { useForm } from 'formash';
@@ -349,8 +353,6 @@ const InputFile = () => {
 };
 ```
 
-Note: with file input type, you don't need to set the value attribute. It will be set automatically when you select the file.
-
 # Before moving to the next section, let's take a look at `useReadFile` hook
 
 We are also providing a useReadFile hook that will read the file and return the data as a base64 encoded string. this is useful for displaying preview of images
@@ -370,13 +372,15 @@ const FileInput = () => {
 
 # How to validate the form
 
+get the `doValidate` function from the useForm hook. it's used to validate the form. it takes no arguments. just call it when you want to validate the form. it returns a boolean value. if the form is valid it returns `true` otherwise it returns `false`.
+
 ```javascript
 import { useForm } from 'formash'
 
 const formSchema = []
 
 const Form = () => {
-  const { form, doValidate, formErrors } = useForm(formSchema)
+  const { doValidate } = useForm(formSchema)
 
   const handleSubmit = () => {
     const isValid = doValidate()
@@ -389,15 +393,30 @@ const Form = () => {
 }
 ```
 
-get the `doValidate` function from the useForm hook. it's used to validate the form. it takes no arguments. just call it when you want to validate the form. it returns a boolean value. if the form is valid it returns `true` otherwise it returns `false`.
-
 # How to set the form value from outside
 
-if you want to set the form value from the outside you can use the `setFormValue` function that you get from the hook. it takes two arguments. the first argument is the name of the input field and the second argument is the value that you want to set.
+let's say you have a form for updating a user information. and you want show the previous information in the form. and data is coming from the server. you can use the `setFormData` function to set the form values. it takes an object as an argument. the key is the name of the input field and the value is the value that you want to set.
 
 ```javascript
 const { setFormValue } = useForm(formSchema)
 setFormValue('email', 'someone@gmail.com')
+```
+
+# How to set data from the server to the form
+
+if do you have a form that you want to edit, you can use the `setFormData` function to set the data from the server to the form. it takes one argument which is the data object. the data object should have the same name as the input field name.
+
+```javascript
+const { setFormData, formValues } = useForm(formSchema)
+useEffect(() => {
+  const fetchData = async () => {
+    const response = await fetch('api/user')
+    const data = await response.json()
+    // data = { name: 'John', email: 'john@gmail.com' }
+    setFormData(data)
+  }
+  fetchData()
+}, [])
 ```
 
 # How to set the form error from outside
