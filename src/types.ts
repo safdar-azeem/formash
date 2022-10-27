@@ -31,6 +31,7 @@ export interface IFormSchema {
   required?: boolean
   placeholder?: string
   className?: string
+  style?: React.CSSProperties
   label?: string
   labelClassName?: string
   text?: string
@@ -68,9 +69,9 @@ export interface IFormSchema {
 export type IEnum = Array<string | number> | string | number
 
 export interface IFormOption {
-  name?: string
+  name: string
   value: string
-  label: string
+  label?: string
   text?: string
   icon?: string
   checked?: boolean
