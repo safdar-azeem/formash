@@ -28,6 +28,8 @@ export interface IFormSchema {
   type: IType
   name: string
   id?: string
+  /* value property is used to set default value for input */
+  value?: any
   required?: boolean
   placeholder?: string
   className?: string
@@ -40,7 +42,6 @@ export interface IFormSchema {
   iconClassName?: string
   options?: IFormOption[]
   accept?: string
-  value?: any
   error?: string
   readOnly?: boolean
   disabled?: boolean
@@ -54,23 +55,26 @@ export interface IFormSchema {
   alt?: string
   validation?: (value: any) => string
   trim?: boolean
+  /* The enum property is used to define a list of possible values or a single value for the input 
+	if the value of the input is not matched with enum, the error message will be displayed
+	*/
+  enum?: IEnum
   /* minLength or maxLength is used to validate the length of the input value 
 	either as a number or as an array of [number, string] 
 	where the string is the error message 
 	*/
   minLength?: number | [number, string]
   maxLength?: number | [number, string]
-  /* The enum property is used to define a list of possible values or a single value for the input 
-	if the value of the input is not matched with enum, the error message will be displayed
-	*/
-  enum?: IEnum
 }
 
 export type IEnum = Array<string | number> | string | number
 
 export interface IFormOption {
-  name: string
   value: string
+  /* id is used to set the id attribute of the option element and the htmlFor attribute of the label element */
+  id?: string
+  /* name will refer to its parent input name, if you already have a name for input, then you don't need to specify name for option, */
+  name?: string
   label?: string
   text?: string
   icon?: string
