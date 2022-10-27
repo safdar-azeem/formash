@@ -1,6 +1,6 @@
 # Formash
 
-Formash is a simple React form library that uses hooks and schema to manage form state, errors, validation and so much more. Now you don't need to write a lot of code to manage your forms. You Just need to write a schema, pass it to the useFormash hook and render your formSchema. and you are good to go. It is designed to be flexible and easy to use. You can use it with any UI library.
+Formash is a simple React form library that uses hooks and schema to manage form state, errors, validation and so much more. Now you don't need to write a lot of code to manage your forms. You Just need to write a schema, pass it to the useForm hook and render your formSchema. and you are good to go. It is designed to be flexible and easy to use. You can use it with any UI library.
 
 ## Installation
 
@@ -21,10 +21,8 @@ yarn add formash
 - `formSchema` it's an array of objects. each object contains the name, type, error, value, etc. of the input field. you can use it to render the form fields. here are the properties that you can use with schema.
 
   <details>
-    <summary><b>Click here to see what properties you can use with schema<b></summary>
-    <b>First let's see which properties are required and which are optional</b>
-    okay, so where you see this `?` with the property name, it means that property is optional. you can use it or not. it's up to you.
-    everything else is required. you need to specify the value of that property.
+  <summary><b>Click here to see what properties you can use with schema<b></summary>
+    Note : the `type` and `name` properties are required. everything else is optional.
   <ul> 
   <li>type: string</li>
   <li>name: string</li>
@@ -32,13 +30,27 @@ yarn add formash
   <li>required?: boolean</li>
   <li>placeholder?: string</li>
   <li>className?: string</li>
+  <li>style?: React.CSSProperties</li>
   <li>label?: string</li>
   <li>labelClassName?: string</li>
   <li>text?: string</li>
   <li>textClassName?: string</li>
   <li>icon?: string</li>
   <li>iconClassName?: string</li>
-  <li>options?: { label: string, value: string, name?: string, checked?: boolean, disabled?: boolean, className?: string, text?: string }[]</li>
+  <li>options?: <ul> 
+        [{
+        <li> name: string </li>
+        <li> value: string </li>
+        <li> label?: string </li>
+        <li> text?: string </li>
+        <li> icon?: string </li>
+        <li> checked?: boolean </li>
+        <li> disabled?: boolean </li>
+        <li> className?: string </li>
+        <li> style?: React.CSSProperties </li>
+        }]
+      </ul>
+  </li>
   <li>accept?: string</li>
   <li>value?: any</li>
   <li>error?: string</li>
@@ -228,7 +240,7 @@ const CheckBox = () => {
 }
 ```
 
-Note: to checked the checkbox, you need to check the option value in formState[item.name].value array
+Note: to checked the checkbox, you need to check the option value in formValues[item.name] array
 
 # How to use with input radio type
 
@@ -291,7 +303,7 @@ const Radio = () => {
 }
 ```
 
-Note: to checked the radio, you need to compare the option value with formState[item.name].value if they are equal then it will be checked
+Note: to checked the radio, you need to compare the option value with formValues[item.name] if they are equal then it will be checked
 
 # How to use with input file type
 
@@ -364,7 +376,7 @@ import { useForm } from 'formash'
 const formSchema = []
 
 const Form = () => {
-  const { form, doValidate } = useForm(formSchema)
+  const { form, doValidate, formErrors } = useForm(formSchema)
 
   const handleSubmit = () => {
     const isValid = doValidate()
