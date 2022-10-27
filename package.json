@@ -1,22 +1,26 @@
 {
   "name": "formash",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "description": "A simple and easy to handle react form state and validation library",
+  "description": "Formash is a simple React form library that uses hooks and schema to manage form state, errors, validation and so much more. Now you don't need to write a lot of code to manage your forms.",
   "repository": "git@github.com:safdar-azeem/formash.git",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "keywords": [
     "react",
+    "formash",
     "form",
-    "i-farm",
     "react-formash",
     "formash-hook",
     "form-hook",
-    "input-hook"
+    "form-schema",
+    "form-validation",
+    "input-hook",
+    "react-hook",
+    "react-form-hook"
   ],
   "files": [
     "dist"
