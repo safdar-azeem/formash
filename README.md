@@ -81,7 +81,7 @@ yarn add formash
   - `handleReset` it's a function that takes no arguments and resets the form values and errors.
   - `setFormValue` if you want to set the form value from the outside you can use the `setFormValue` function that you get from the hook. it takes two arguments. the first argument is the name of the input field and the second argument is the value that you want to set.
   - `setFormError` if you want to set the form error from the outside you can use the `setFormError` function that you get from the hook. it takes two arguments. the first argument is the name of the input field and the second argument is the error message that you want to set.
-  - `setFormData` let's say you have a form for updating a user information. and you want show the previous information in the form. and data is coming from the server. you can use the `setFormData` function to set the form values. it takes an object as an argument. the key is the name of the input field and the value is the value that you want to set.
+  - `setFormData` let's say you have a form for updating a user information. you want to show the previous information in the form. data is coming from the server. you can use the `setFormData` function to set the form values. it takes an object as an argument. the key is the name of the input field and the value is the value that you want to set.
 
 ## Basic Usage
 
@@ -92,11 +92,11 @@ const formSchema = [
   {
     type: 'text',
     name: 'name',
+    value: '',
     label: 'Name',
     placeholder: 'Enter your name',
     error: 'Please enter your name',
-    value: '',
-    required: false,
+    required: true,
   },
 ]
 
