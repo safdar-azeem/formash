@@ -532,10 +532,10 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==
 
-formash@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/formash/-/formash-2.0.5.tgz#8cf1d7120103ad1e2886de783ada57011ef76d72"
-  integrity sha512-fO5ag3CIdzMKzBbpNm0DOdbnXmj34tqdR2xIQP2sFsgwVCKG9hBDItq7iGx/NsDKAY83PFH4I/tYuL9gjCF1Ig==
+formash@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/formash/-/formash-2.0.6.tgz#0a962571db0df13943d15b2208f6b423cd211db2"
+  integrity sha512-TG65E2VDgn8hyuC5FGhYznfU30HshHGcHLVYQt+8taDidCdfG1kKZFEMg7qe43GcbIJt/wg3YaHrC+w5ewieUA==
 
 fsevents@~2.3.2:
   version "2.3.2"
