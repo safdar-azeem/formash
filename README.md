@@ -395,7 +395,7 @@ const Form = () => {
 
 # How to set the form value from outside
 
-let's say you have a form for updating a user information. and you want show the previous information in the form. and data is coming from the server. you can use the `setFormData` function to set the form values. it takes an object as an argument. the key is the name of the input field and the value is the value that you want to set.
+if you want to set the form value from the outside you can use the setFormValue function that you get from the hook. it takes two arguments. the first argument is the name of the input field and the second argument is the value that you want to set.
 
 ```javascript
 const { setFormValue } = useForm(formSchema)
@@ -404,7 +404,7 @@ setFormValue('email', 'someone@gmail.com')
 
 # How to set data from the server to the form
 
-if do you have a form that you want to edit, you can use the `setFormData` function to set the data from the server to the form. it takes one argument which is the data object. the data object should have the same name as the input field name.
+let's say you have a form for updating a user information. and you want show the previous information in the form. and data is coming from the server. you can use the `setFormData` function to set the form values. it takes an object as an argument. in an object the key is the name of the input field and the value is the value that you want to set.
 
 ```javascript
 const { setFormData, formValues } = useForm(formSchema)
@@ -430,7 +430,7 @@ setFormError('email', 'Please enter a valid email')
 
 # How to reset the form state
 
-it's a function that you can get from the `useForm` hook. it's used to reset the form. it takes no arguments. just call it when you want to reset the form.
+it's a function that you can get from the `useForm` hook. it's used to reset the formValues and formErrors. it takes no arguments. just call it when you want to reset the form.
 
 ```javascript
 const { handleReset } = useForm(formSchema)
