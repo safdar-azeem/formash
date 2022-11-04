@@ -65,7 +65,7 @@ yarn add formash
   <li>step?: number</li>
   <li>formTarget?: '_self' | '_blank' | '_parent' | '_top' | 'framename'</li>
   <li>alt?: string</li>
-  <li>validation?: (value: any) => string</li>
+  <li>validation?: (value: any, formValues: IFormValues, formSchema: IFormSchema[]) => string | undefined</li>
   <li>trim?: boolean</li>
   <li>minLength?: number | [number, string]</li>
   <li>maxLength?: number | [number, string]</li>
@@ -101,10 +101,16 @@ const formSchema = [
 ]
 
 const Form = () => {
-  const { formValues, formErrors, handleChange } = useForm(formSchema)
-
+  const { formValues, formErrors, handleChange, doValidate } = useForm(formSchema)
+  const handleSubmit = e => {
+    e.preventDefault()
+    const isValid = doValidate()
+    if (isValid) {
+      // submit the form
+    }
+  }
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       {formSchema.map(item => {
         return (
           <div key={item.name}>
@@ -120,7 +126,8 @@ const Form = () => {
           </div>
         )
       })}
-    </div>
+      <button> Submit </button>
+    </form>
   )
 }
 ```
@@ -373,6 +380,7 @@ const FileInput = () => {
 # How to validate the form
 
 get the `doValidate` function from the useForm hook. it's used to validate the form. it takes no arguments. just call it when you want to validate the form. it returns a boolean value. if the form is valid it returns `true` otherwise it returns `false`.
+Note: if you don't call this function, you won't be able to get the form errors.
 
 ```javascript
 import { useForm } from 'formash'
