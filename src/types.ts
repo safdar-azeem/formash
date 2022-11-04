@@ -53,7 +53,7 @@ export interface IFormSchema {
   step?: number
   formTarget?: '_self' | '_blank' | '_parent' | '_top' | 'framename'
   alt?: string
-  validation?: (value: any) => string
+  validation?: (value: any, formValues: IFormValues, formSchema: IFormSchema[]) => string | undefined
   trim?: boolean
   /* The enum property is used to define a list of possible values or a single value for the input 
 	if the value of the input is not matched with enum, the error message will be displayed

@@ -99,8 +99,9 @@ export const useForm = (
     const { required, validation, error } = formItem
     if (required && isEmptyValue(value)) return error || errors.required(formItem.name)
     if (formItem?.enum && !isEmptyValue(formItem.enum)) return validateEnum(value, formItem)
-    if (typeof value === 'string') return validation?.(value) || checkLength(value, formItem) || ''
-    if (validation) return validation(value)
+    if (typeof value === 'string')
+      return validation?.(value, formValues, formSchema) || checkLength(value, formItem) || ''
+    if (validation) return validation(value, formValues, formSchema) || ''
     return ''
   }
 
